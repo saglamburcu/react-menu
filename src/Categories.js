@@ -2,35 +2,35 @@ import { Grid } from '@chakra-ui/react';
 import { useState } from 'react';
 import Menu from "./Menu";
 
-function Categories({ menu, setMenu }) {
+
+function Categories({ menu }) {
+
+  // Unique Values
+  const categories = ["all", ...new Set(menu.map(item => item.category))];
+  //console.log(categories)
+
   const [filteredMenu, setFilteredMenu] = useState(menu);
 
-  const allMenu = () => {
-    setFilteredMenu(menu);
-  };
+  const filterItems = (category) => {
+    if (category === "all") {
+      setFilteredMenu(menu);
+      return;
+    }
 
-  const filterBreakfast = () => {
-    const breakfast = menu.filter(item => item.category === "breakfast");
-    setFilteredMenu(breakfast);
-  };
-
-  const filterLunch = () => {
-    const lunch = menu.filter(item => item.category === "lunch");
-    setFilteredMenu(lunch);
-  };
-
-  const filterShakes = () => {
-    const shakes = menu.filter(item => item.category === "shakes");
-    setFilteredMenu(shakes);
+    const items = menu.filter(item => item.category === category);
+    setFilteredMenu(items);
   }
 
   return (
     <section className="categories">
       <div className='btns'>
-        <button onClick={allMenu}>All</button>
-        <button onClick={filterBreakfast}>Breakfast</button>
-        <button onClick={filterLunch}>Lunch</button>
-        <button onClick={filterShakes}>Shakes</button>
+        {
+          categories.map((category, index) => (
+            <button key={index} onClick={() => filterItems(category)}>
+              {category}
+            </button>
+          ))
+        }
       </div>
       <div>
         <Grid templateColumns='repeat(2, 1fr)' gap={20}>

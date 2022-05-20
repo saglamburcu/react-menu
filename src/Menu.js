@@ -1,4 +1,4 @@
-function Menu({ title, category, price, img, desc }) {
+function Menu({ title, price, img, desc }) {
   return (
     <section className="menu">
 

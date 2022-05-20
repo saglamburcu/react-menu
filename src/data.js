@@ -70,6 +70,6 @@ const menu = [
     price: 16.99,
     img: 'https://github.com/john-smilga/react-projects/blob/master/05-menu/setup/public/images/item-9.jpeg?raw=true',
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
-  },
+  }
 ];
 export default menu;
